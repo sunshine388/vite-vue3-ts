@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import { h, resolveComponent } from 'vue'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { h, resolveComponent } from 'vue';
 
 export const subRoutes = [
   {
@@ -53,7 +53,7 @@ export const subRoutes = [
       icon: 'House'
     }
   }
-]
+];
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -74,20 +74,20 @@ const routes: Array<RouteRecordRaw> = [
     },
     children: subRoutes
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(),
   routes
-})
+});
 
 router.beforeEach((to: any, _from: any, next: any) => {
   //未登录执行逻辑
   if (!sessionStorage.getItem('user') && to.path !== '/login') {
-    return next({ path: '/login' })
+    return next({ path: '/login' });
   } else {
-    next()
+    next();
   }
-})
+});
 
-export default router
+export default router;

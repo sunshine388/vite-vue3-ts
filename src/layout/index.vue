@@ -33,34 +33,34 @@
 </template>
 
 <script setup lang="ts">
-import AsideMenu from './AsideMenu.vue'
-import { ref, onMounted } from 'vue'
-import { Right } from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
+import AsideMenu from './AsideMenu.vue';
+import { ref, onMounted } from 'vue';
+import { Right } from '@element-plus/icons-vue';
+import { useRouter } from 'vue-router';
 
-const router = useRouter()
-const username = ref<String>('')
-const isCollapse = ref<Boolean>(false)
+const router = useRouter();
+const username = ref<String>('');
+const isCollapse = ref<Boolean>(false);
 
 const changeIsCollapse = () => {
-  isCollapse.value = !isCollapse.value
-}
+  isCollapse.value = !isCollapse.value;
+};
 const handleCommand = (command: string | number | object) => {
   switch (command) {
     case 'logout':
-      sessionStorage.clear()
-      router.push('/login')
-      break
+      sessionStorage.clear();
+      router.push('/login');
+      break;
     default:
-      break
+      break;
   }
-}
+};
 onMounted(() => {
   if (sessionStorage.getItem('user')) {
-    const user = JSON.parse(sessionStorage.getItem('user'))
-    username.value = user.username
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    username.value = user.username;
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

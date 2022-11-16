@@ -1,15 +1,15 @@
-import { createApp } from 'vue'
-import './styles/index.css'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import { createApp } from 'vue';
+import './styles/index.css';
+import App from './App.vue';
+import router from './router';
+import { createPinia } from 'pinia';
 
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
+import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 
-const app = createApp(App)
+const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component)
+  app.component(key, component);
 }
-app.use(router).use(store).use(ElementPlus).mount('#app')
+app.use(router).use(createPinia()).use(ElementPlus).mount('#app');

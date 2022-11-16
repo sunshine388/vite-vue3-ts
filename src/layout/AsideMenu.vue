@@ -28,39 +28,39 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { subRoutes } from '@/router'
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import { subRoutes } from '@/router';
 
 const props = defineProps({
   isCollapse: {
     type: Boolean,
     required: true
   }
-})
-const route = useRoute()
+});
+const route = useRoute();
 const currentPath = computed(() => {
-  return route.path
-})
+  return route.path;
+});
 const menu = computed(() => {
-  return filtterRoutes(subRoutes, '/')
-})
+  return filtterRoutes(subRoutes, '/');
+});
 
 const filtterRoutes = (routes: Array, path: String) => {
-  let result = []
+  let result = [];
   routes.forEach((item, index) => {
-    item.path = path + item.path
+    item.path = path + item.path;
     if (item.children && item.children.length > 0) {
-      const children = filtterRoutes(item.children, item.path + '/')
-      const currentRoutes = { ...item }
-      currentRoutes.children = children
-      result.push(currentRoutes)
+      const children = filtterRoutes(item.children, item.path + '/');
+      const currentRoutes = { ...item };
+      currentRoutes.children = children;
+      result.push(currentRoutes);
     } else if (!item.meta.isNotMenu) {
-      result.push(item)
+      result.push(item);
     }
-  })
-  return result
-}
+  });
+  return result;
+};
 </script>
 
 <style lang="scss" scoped>

@@ -20,18 +20,18 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
-import type { FormInstance, FormRules } from 'element-plus'
-import { ElMessage } from 'element-plus'
-import { useRouter } from 'vue-router'
+import { reactive, ref } from 'vue';
+import type { FormInstance, FormRules } from 'element-plus';
+import { ElMessage } from 'element-plus';
+import { useRouter } from 'vue-router';
 
-const router = useRouter()
-const loading = ref<Boolean>(false)
-const loginFom = ref<FormInstance>()
+const router = useRouter();
+const loading = ref<Boolean>(false);
+const loginFom = ref<FormInstance>();
 const form = reactive({
   username: '',
   password: ''
-})
+});
 const rules = reactive<FormRules>({
   username: [
     { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -41,22 +41,22 @@ const rules = reactive<FormRules>({
     { required: true, message: '请输入密码', trigger: 'blur' },
     { min: 6, max: 20, message: '长度在6-20之间', trigger: 'blur' }
   ]
-})
+});
 
 const onSubmit = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return
+  if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      loading.value = true
-      sessionStorage.setItem('user', JSON.stringify({ username: form.username }))
+      loading.value = true;
+      sessionStorage.setItem('user', JSON.stringify({ username: form.username }));
       setTimeout(() => {
-        loading.value = false
-        ElMessage.success('登录成功！')
-        router.push('/')
-      }, 1000)
+        loading.value = false;
+        ElMessage.success('登录成功！');
+        router.push('/');
+      }, 1000);
     }
-  })
-}
+  });
+};
 </script>
 
 <style lang="scss" scoped>
